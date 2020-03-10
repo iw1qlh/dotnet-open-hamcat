@@ -7,7 +7,7 @@ Compatible with Kenwood, Yeasu devices and Hamlib library
 ## Usage
 - initialize CatKenwood or CatYaesu or CatHamlib class
 - call Open() method
-- call an available command
+- call available commands
 - call Close() method
 
 ## Available commands
