@@ -30,10 +30,10 @@ Set VFO frequency
 Set operating mode (LSB, USB, CW, FM, AM, DIG)
 
 ### public void AskSwr()
-Get SWR 
+Get SWR - read value in Swr property
 
 ### public void AskFrequency()
-Get VFO frequency
+Get VFO frequency- read value in Freq property
 
 ## Properties
 - Modes Mode {get; set;} - operating mode
