@@ -2,10 +2,10 @@
 
 ## A C# library for Amateur Radio CAT
 
-Compatible with Kenwood, Yeasu devices and Hamlib library
+Compatible with Kenwood, Yeasu devices, Hamlib and Omnirig library
 
 ## Usage
-- initialize CatKenwood or CatYaesu or CatHamlib class
+- initialize CatKenwood or CatYaesu or CatHamlib or CatOmniRig class
 - call Open() method
 - call available commands
 - call Close() method
@@ -19,6 +19,9 @@ Set the transceiver in RX mode
 
 ### public void LowPower()
 Set the low power
+
+### public void HighPower()
+Set the high power
 
 ### public void DisableATU()
 Disable antenna tuner
