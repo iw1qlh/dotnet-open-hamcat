@@ -132,6 +132,13 @@ namespace HamCat
             Console.WriteLine("LowPower");
         }
 
+        public override void HighPower()
+        {
+            ser.Write("PC200;");
+            Console.WriteLine("HighPower");
+        }
+
+
         public override void SetMode(Modes mode)
         {
             ModeConvert mc = KenwoodModes.FirstOrDefault(w => w.Mode == mode);
@@ -165,6 +172,12 @@ namespace HamCat
             ser.Write("IF;");
             Console.WriteLine("AskFrequency");
         }
+
+        public override void OpenSettings()
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

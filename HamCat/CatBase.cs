@@ -20,7 +20,7 @@ namespace HamCat
         protected Modes mode;
         protected bool tx;
 
-        public enum Modes { LSB, USB, CW, AM, FM, DIG };
+        public enum Modes { LSB, USB, CW, AM, FM, DIG, UNKNOW };
         public Modes Mode { get { return mode; }  set { SetMode(value); } }
 
         public double Swr { get { return swr; } }
@@ -35,6 +35,7 @@ namespace HamCat
         public abstract void TX();
         public abstract void RX();
         public abstract void LowPower();
+        public abstract void HighPower();
         public abstract void DisableATU();
 
         public abstract void SetFrequency(int freq);
@@ -48,6 +49,8 @@ namespace HamCat
 
         public abstract void Open();
         public abstract void Close();
+
+        public abstract void OpenSettings();
 
         public void RxTx(bool tx)
         {

@@ -14,6 +14,11 @@ namespace HamCat
         protected IPEndPoint endPoint;
         protected NetworkStream netStream;
 
+        protected virtual string GetErrorMessage(Exception ex)
+        {
+            return ex.Message;
+        }
+
         public override void Open()
         {
             try
@@ -27,7 +32,7 @@ namespace HamCat
             }
             catch (Exception ex)
             {
-                onError(ex.Message);
+                onError(GetErrorMessage(ex));
             }
         }
 

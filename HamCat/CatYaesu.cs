@@ -42,6 +42,11 @@ namespace HamCat
             Console.WriteLine("LowPower - NOT AVAILABLE");
         }
 
+        public override void HighPower()
+        {
+            Console.WriteLine("HighPower - Not implemented");
+        }
+
         public override void SetMode(Modes mode)
         {
             byte[] buff = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x07 };
@@ -104,5 +109,11 @@ namespace HamCat
         {
             Console.WriteLine("AskFrequency - Not implemented");
         }
+
+        public override void OpenSettings()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
