@@ -50,24 +50,13 @@ namespace HamCat
             Modes nMode = Modes.UNKNOW;
             switch (Rig.Mode)
             {
-                case OmniRig.RigParamX.PM_CW_L:
-                    nMode = Modes.CW;
-                    break;
-                case OmniRig.RigParamX.PM_CW_U:
-                    nMode = Modes.CW;
-                    break;
-                case OmniRig.RigParamX.PM_SSB_L:
-                    nMode = Modes.LSB;
-                    break;
-                case OmniRig.RigParamX.PM_SSB_U:
-                    nMode = Modes.LSB;
-                    break;
-                case OmniRig.RigParamX.PM_FM:
-                    nMode = Modes.FM;
-                    break;
-                case OmniRig.RigParamX.PM_AM:
-                    nMode = Modes.AM;
-                    break;
+                case OmniRig.RigParamX.PM_CW_L: nMode = Modes.CW; break;
+                case OmniRig.RigParamX.PM_CW_U: nMode = Modes.CW; break;
+                case OmniRig.RigParamX.PM_SSB_L: nMode = Modes.LSB; break;
+                case OmniRig.RigParamX.PM_SSB_U: nMode = Modes.USB; break;
+                case OmniRig.RigParamX.PM_FM: nMode = Modes.FM; break;
+                case OmniRig.RigParamX.PM_AM: nMode = Modes.AM; break;
+                case OmniRig.RigParamX.PM_DIG_L: nMode = Modes.DIG; break;
                 default:
                     Console.WriteLine("OmniRig - Unknow mode");
                     break;
@@ -114,6 +103,34 @@ namespace HamCat
             ReadCat();
         }
 
+        public override void SetFrequency(long freq)
+        {
+            Rig.Freq = (int)freq;
+        }
+
+        public override void RX()
+        {
+            Rig.Tx = OmniRig.RigParamX.PM_RX;
+        }
+
+        public override void TX()
+        {
+            Rig.Tx = OmniRig.RigParamX.PM_TX;
+        }
+
+        public override void SetMode(Modes mode)
+        {
+            switch (mode)
+            {
+                case Modes.AM: Rig.Mode = OmniRig.RigParamX.PM_AM; break;
+                case Modes.CW: Rig.Mode = OmniRig.RigParamX.PM_CW_U; break;
+                case Modes.DIG: Rig.Mode = OmniRig.RigParamX.PM_DIG_L; break;
+                case Modes.FM: Rig.Mode = OmniRig.RigParamX.PM_FM; break;
+                case Modes.LSB: Rig.Mode = OmniRig.RigParamX.PM_SSB_L; break;
+                case Modes.USB: Rig.Mode = OmniRig.RigParamX.PM_SSB_U; break;
+            }
+        }
+
         public override void AskSwr()
         {
             throw new NotImplementedException();
@@ -136,10 +153,6 @@ namespace HamCat
         }
 
 
-        public override void RX()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void SendRaw(byte[] buff)
         {
@@ -151,19 +164,5 @@ namespace HamCat
             throw new NotImplementedException();
         }
 
-        public override void SetFrequency(int freq)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SetMode(Modes mode)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void TX()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

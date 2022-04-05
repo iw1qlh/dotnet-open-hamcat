@@ -93,7 +93,7 @@ namespace HamCat
             Console.WriteLine("DisableATU - Not implemented");
         }
 
-        public override void SetFrequency(int freq)
+        public override void SetFrequency(long freq)
         {
             Write(string.Format("F{0}", freq));
         }

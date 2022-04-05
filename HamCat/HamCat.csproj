@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFrameworks>netstandard2;net6.0</TargetFrameworks>
+	<Authors>IW1QLH</Authors>
+	<Company>IW1QLH</Company>
+	<Product>HamCat</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <COMReference Include="OmniRig">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>4fe359c5-a58f-459d-be95-ca559fb4f270</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AnyRigBase" Version="1.0.2-beta" />
+    <PackageReference Include="AnyRigLibrary" Version="1.0.3-beta" />
+  </ItemGroup>
+
+
+</Project>

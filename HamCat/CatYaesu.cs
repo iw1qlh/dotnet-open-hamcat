@@ -74,9 +74,9 @@ namespace HamCat
             Console.WriteLine("DisableATU - NOT AVAILABLE");
         }
 
-        public override void SetFrequency(int freq)
+        public override void SetFrequency(long freq)
         {
-            byte[] buff = ToBcd(freq / 10);
+            byte[] buff = ToBcd((int)(freq / 10));
             Array.Resize(ref buff, 5);
             buff[4] = 0x01;
             ser.Write(buff, 0, buff.Length);

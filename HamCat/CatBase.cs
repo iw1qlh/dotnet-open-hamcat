@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static HamCat.CatBase;
 
 namespace HamCat
 {
@@ -16,7 +17,8 @@ namespace HamCat
 
         public enum Values { SWR, COMP, ALC, FREQ, MODE, RXTX };
         protected double swr;
-        protected int comp, alc, freq;
+        protected long freq;
+        protected int comp, alc;
         protected Modes mode;
         protected bool tx;
 
@@ -26,7 +28,7 @@ namespace HamCat
         public double Swr { get { return swr; } }
         public int Comp { get { return comp; } }
         public int Alc { get { return alc; } }
-        public int Freq { get { return freq; } set { SetFrequency(value); } }
+        public long Freq { get { return freq; } set { SetFrequency(value); } }
         public bool Tx { get { return tx; } set { RxTx(value); } }
 
         public delegate void OnChangeEventHandler(Values value, string text);
@@ -38,7 +40,7 @@ namespace HamCat
         public abstract void HighPower();
         public abstract void DisableATU();
 
-        public abstract void SetFrequency(int freq);
+        public abstract void SetFrequency(long freq);
         public abstract void SetMode(Modes mode);
 
         public abstract void AskSwr();
@@ -79,4 +81,24 @@ namespace HamCat
         }
 
     }
+
+    public static class CatBaseExtensions
+    {
+        public static string ToText(this Modes mode)
+        {
+            if (mode == Modes.LSB)
+                return "LSB";
+            if (mode == Modes.USB)
+                return "USB";
+            if (mode == Modes.CW)
+                return "CW";
+            if (mode == Modes.FM)
+                return "FM";
+            if (mode == Modes.AM)
+                return "AM";
+            return null;
+        }
+
+    }
+
 }

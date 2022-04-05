@@ -114,6 +114,17 @@ namespace HamCat
             }
         }
 
+        private void SetValue(string p, int startIndex, int length, Values values, ref long value)
+        {
+            long nValue;
+            if (long.TryParse(p.Substring(startIndex, length), out nValue) && (nValue != value))
+            {
+                value = nValue;
+                onChange(values, p);
+            }
+        }
+
+
         public override void TX()
         {
             ser.Write("TX1;");
@@ -155,7 +166,7 @@ namespace HamCat
             Console.WriteLine("DisableATU");
         }
 
-        public override void SetFrequency(int freq)
+        public override void SetFrequency(long freq)
         {
             ser.Write(string.Format("FA{0:D11};", freq));
             Console.WriteLine("SetFrequency");
