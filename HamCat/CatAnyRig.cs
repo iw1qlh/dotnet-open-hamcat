@@ -12,16 +12,17 @@ namespace HamCat
     {
         const int RIG_NO = 0;
 
+        IAnyRigEngine engine;
         RigCore rig;
 
         public CatAnyRig()
         {
-            AnyRigConfig config = ConfigManager.Load();
-            RigCore[] rigs = ConfigManager.LoadRigs(config);
+            engine = new AnyRigEngine();
+            IRigCore irig = engine.GetRig(0);
 
-            if (rigs.Length > RIG_NO)
+            if (irig != null)
             {
-                rig = rigs[RIG_NO];
+                rig = irig as RigCore;
                 rig.NotifyChanges = (rx, changed) => OnChanges(rx, changed);
             }
 
@@ -141,9 +142,13 @@ namespace HamCat
 
         public override void OpenSettings()
         {
-            throw new NotImplementedException();
+            engine.OpenSettings();
         }
 
+        public void DisableOnAir()
+        {
+            rig.DisableOnAir();
+        }
 
         public override void SendRaw(byte[] buff)
         {

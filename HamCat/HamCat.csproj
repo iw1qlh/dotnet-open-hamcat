@@ -5,6 +5,7 @@
 	<Authors>IW1QLH</Authors>
 	<Company>IW1QLH</Company>
 	<Product>HamCat</Product>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AnyRigBase" Version="1.0.2-beta" />
-    <PackageReference Include="AnyRigLibrary" Version="1.0.3-beta" />
+    <PackageReference Include="AnyRigBase" Version="1.0.3-beta" />
+    <PackageReference Include="AnyRigLibrary" Version="1.0.4-beta" />
   </ItemGroup>
 
 

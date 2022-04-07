@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace HamCat
 {
@@ -15,6 +16,10 @@ namespace HamCat
 
         public CatOmniRig()
         {
+        }
+
+        public override void Open()
+        {
             OmniRigEngine = (OmniRig.OmniRigX)Activator.CreateInstance(Type.GetTypeFromProgID("OmniRig.OmniRigX"));
             // we want OmniRig interface V.1.1 to 1.99
             // as V2.0 will likely be incompatible  with 1.x
@@ -23,23 +28,31 @@ namespace HamCat
                 OmniRigEngine = null;
                 throw new Exception("OmniRig is not installed or has unsupported version.");
             }
+
             OmniRigEngine.StatusChange += OmniRigEngine_StatusChange;
-            OmniRigEngine.ParamsChange += OmniRigEngine_ParamsChange;
+            OmniRigEngine.ParamsChange += OmniRigEngine_ParamsChange;           
 
             Rig = OmniRigEngine.Rig1;
+            ReadCat();
 
-        }
-
-        public override void Open()
-        {
         }
 
         public override void Close()
         {
+            
+            OmniRigEngine.StatusChange -= OmniRigEngine_StatusChange;
+            OmniRigEngine.ParamsChange -= OmniRigEngine_ParamsChange;
+
+            Rig = null;
+            Marshal.ReleaseComObject(OmniRigEngine);
+
         }
 
         private void ReadCat()
         {
+            if (Rig == null)
+                return;
+
             int nFreq = Rig.Freq;
             if (freq != nFreq)
             {
